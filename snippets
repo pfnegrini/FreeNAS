@@ -4,3 +4,10 @@ iocage set ip4_addr="bridge0|192.168.1.129" FAMP2
  iocage set template=yes FAMP
 iocage set notes="FAMP tempalte and redis. MariaDB (root|root), ssh (admin|admin)" FAMP
 iocage create -n FAMP ip4_addr="bridge0|192.168.1.128" -r 11.1-RELEASE
+
+ cd /tmp
+
+git clone --recursive https://github.com/iocage/iocage
+
+cp -R iocage/iocage/lib/ /usr/local/lib/python3.6/site-packages/iocage/lib
+
