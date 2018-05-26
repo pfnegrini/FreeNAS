@@ -7,7 +7,14 @@ iocage create -n FAMP ip4_addr="bridge0|192.168.1.128" -r 11.1-RELEASE
 
 iocage fstab -a nextcloud "/mnt/VDev/Software  /mnt/Software  nullfs  rw  0  0"
 
+iocage create -n NZBGet ip4_addr="bridge0|192.168.1.124" -r 11.1-RELEASE
+iocage fstab -a NZBGet "/mnt/VDev/Downloads  /mnt/Downloads  nullfs  rw  0  0"
+iocage pkg NZBGet install nano
+iocage pkg NZBGet install nzbget
+iocage exec sysrc nzbget_enable=YES NZBGet
+iocage set allow_raw_sockets=1 NZBGet
 
+nano /usr/local/etc/nzbget.conf
 
  cd /tmp
 
