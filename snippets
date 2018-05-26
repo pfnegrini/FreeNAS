@@ -27,6 +27,7 @@ iocage set allow_raw_sockets=1 Emby
 iocage fstab -a Emby "/mnt/VDev/Photos  /mnt/Photos  nullfs  rw  0  0"
 iocage fstab -a Emby "/mnt/VDev/Documents  /mnt/Documents  nullfs  rw  0  0"
 iocage fstab -a Emby "/mnt/VDev/Music  /mnt/Music  nullfs  rw  0  0"
+iocage start Emby
 iocage pkg Emby install nano
 iocage exec portsnap fetch update Emby
 iocage exec sysrc emby_server_enable="YES"
