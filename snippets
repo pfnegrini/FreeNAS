@@ -7,6 +7,7 @@ iocage create -n FAMP ip4_addr="bridge0|192.168.1.128" -r 11.1-RELEASE
 
 iocage fstab -a nextcloud "/mnt/VDev/Software  /mnt/Software  nullfs  rw  0  0"
 
+NZBGet-----------------------------
 iocage create -n NZBGet ip4_addr="bridge0|192.168.1.124" -r 11.1-RELEASE
 iocage fstab -a NZBGet "/mnt/VDev/Downloads  /mnt/Downloads  nullfs  rw  0  0"
 iocage pkg NZBGet install nano
@@ -17,6 +18,39 @@ iocage set allow_raw_sockets=1 NZBGet
 nano /usr/local/etc/nzbget.conf
 WebDir=/usr/local/share/nzbget/webui
 ConfigTemplate=/usr/local/share/nzbget/nzbget.conf
+
+
+
+Emby-----------------------------
+iocage create -n Emby ip4_addr="bridge0|192.168.1.125" -r 11.1-RELEASE
+iocage fstab -a Emby "/mnt/VDev/Photos  /mnt/Photos  nullfs  rw  0  0"
+iocage fstab -a Emby "/mnt/VDev/Documents  /mnt/Documents  nullfs  rw  0  0"
+iocage fstab -a Emby "/mnt/VDev/Music  /mnt/Music  nullfs  rw  0  0"
+iocage pkg Emby install nano
+iocage exec portsnap fetch update Emby
+iocage exec sysrc emby_server_enable="YES"
+iocage pkg Emby delete -f ffmpeg 
+iocage console Emby 
+cd /usr/ports/multimedia/ffmpeg
+# Install ffmpeg build dependencies
+pkg install `make build-depends-list | tr '\n' ' ' | sed 's/\/usr\/ports\///g' | sed 's/audio\/lame //g'`
+make config
+# enable the lame option
+# enable the SMB option
+# enable the ass subtitles option
+# enable the opus subtitles option
+# enable the x265 subtitles option
+make install clean 
+service emby-server start
+
+
+
+
+portsnap fetch update 
+
+iocage pkg NZBGet install nzbget
+iocage exec sysrc nzbget_enable=YES NZBGet
+iocage set allow_raw_sockets=1 NZBGet
 
 
  cd /tmp
