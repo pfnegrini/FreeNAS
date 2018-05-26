@@ -31,7 +31,7 @@ iocage fstab -a Emby "/mnt/VDev/Documents  /mnt/Documents  nullfs  rw  0  0"
 iocage fstab -a Emby "/mnt/VDev/Music  /mnt/Music  nullfs  rw  0  0"
 iocage pkg Emby install nano
 iocage pkg Emby install emby-server
-iocage exec portsnap fetch update Emby
+iocage exec portsnap fetch extract update Emby
 iocage exec sysrc emby_server_enable="YES"
 iocage pkg Emby delete -f ffmpeg 
 iocage console Emby 
