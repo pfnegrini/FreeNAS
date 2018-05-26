@@ -28,6 +28,7 @@ iocage start Emby
 iocage set allow_raw_sockets=1 Emby
 iocage fstab -a Emby "/mnt/VDev/Photos  /mnt/Photos  nullfs  rw  0  0"
 iocage fstab -a Emby "/mnt/VDev/Documents  /mnt/Documents  nullfs  rw  0  0"
+iocage fstab -a Emby "/mnt/VDev/Software  /mnt/Software  nullfs  rw  0  0"
 iocage fstab -a Emby "/mnt/VDev/Music  /mnt/Music  nullfs  rw  0  0"
 iocage pkg Emby install nano
 iocage pkg Emby install emby-server
@@ -47,7 +48,15 @@ make config
 make install clean 
 service emby-server start
 
-
+CouchPotato-----------------------------
+cd /usr/local && git clone git://github.com/RuudBurger/CouchPotatoServer.git couchpotato
+chown -R media:media couchpotato
+cp /usr/local/couchpotato/init/freebsd /usr/local/etc/rc.d/couchpotato
+chmod +x /usr/local/etc/rc.d/couchpotato
+sysrc couchpotato_enable=YES
+sysrc couchpotato_user=media
+sysrc couchpotato_group=media
+sysrc couchpotat_dir=/usr/local/couchpotato
 
 
 portsnap fetch update 
