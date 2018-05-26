@@ -23,6 +23,7 @@ ConfigTemplate=/usr/local/share/nzbget/nzbget.conf
 
 Emby-----------------------------
 iocage create -n Emby ip4_addr="bridge0|192.168.1.125" -r 11.1-RELEASE
+iocage set allow_raw_sockets=1 Emby
 iocage fstab -a Emby "/mnt/VDev/Photos  /mnt/Photos  nullfs  rw  0  0"
 iocage fstab -a Emby "/mnt/VDev/Documents  /mnt/Documents  nullfs  rw  0  0"
 iocage fstab -a Emby "/mnt/VDev/Music  /mnt/Music  nullfs  rw  0  0"
