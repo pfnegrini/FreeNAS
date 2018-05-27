@@ -27,7 +27,8 @@ iocage start Emby
 
 iocage set allow_raw_sockets=1 Emby
 iocage fstab -a Emby "/mnt/VDev/Photos  /mnt/Photos  nullfs  rw  0  0"
-iocage fstab -a Emby "/mnt/VDev/Documents  /mnt/Documents  nullfs  rw  0  0"
+iocage fstab -a Emby "/mnt/VDev/Movies  /mnt/Movies  nullfs  rw  0  0"
+iocage fstab -a Emby "/mnt/VDev/Series  /mnt/Series  nullfs  rw  0  0"
 iocage fstab -a Emby "/mnt/VDev/Software  /mnt/Software  nullfs  rw  0  0"
 iocage fstab -a Emby "/mnt/VDev/Music  /mnt/Music  nullfs  rw  0  0"
 iocage pkg Emby install nano
