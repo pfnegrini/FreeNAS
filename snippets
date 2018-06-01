@@ -7,6 +7,10 @@ iocage create -n FAMP ip4_addr="bridge0|192.168.1.128" -r 11.1-RELEASE
 
 iocage fstab -a nextcloud "/mnt/VDev/Software  /mnt/Software  nullfs  rw  0  0"
 
+nextcloud-----------------------------
+DELETE FROM nextcloud.oc_bruteforce_attempts;
+
+
 NZBGet-----------------------------
 iocage create -n NZBGet ip4_addr="bridge0|192.168.1.124" -r 11.1-RELEASE
 iocage fstab -a NZBGet "/mnt/VDev/Downloads  /mnt/Downloads  nullfs  rw  0  0"
