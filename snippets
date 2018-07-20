@@ -2,8 +2,10 @@
 iocage set allow_raw_sockets=1 FAMP2
 iocage set ip4_addr="bridge0|192.168.1.129" FAMP2
  iocage set template=yes FAMP
-iocage set notes="FAMP tempalte and redis. MariaDB (root|root), ssh (admin|admin)" FAMP
+iocage set notes="FAMP template and redis. MariaDB (root|root), ssh (admin|admin)" FAMP
 iocage create -n FAMP ip4_addr="bridge0|192.168.1.128" -r 11.1-RELEASE
+
+iocage set ip4_addr="bridge0|192.168.1.124" nextcoud
 
 iocage fstab -a nextcloud "/mnt/VDev/Software  /mnt/Software  nullfs  rw  0  0"
 
