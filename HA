@@ -1,0 +1,4 @@
+{{ states.sensor.temperature_158d0002477cca}}
+{% for state in states.sensor %}
+  {{ state.entity_id }}={{ state.state }},
+{% endfor %}
