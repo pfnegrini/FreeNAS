@@ -1,3 +1,4 @@
+{{ states.sensor.temperature_158d0002477cca}}
 {{ states.sensor.temperature_158d0002477cca.state}}{{ states.sensor.temperature_158d0002477cca.attributes.unit_of_measurement}}
 
 batt levvel is {{ states.sensor.temperature_158d0002477cca.attributes.battery_level}} %
@@ -10,8 +11,10 @@ states('sensor.temperature')
 {%endif %}
 
 {% for state in states.sensor %}
-{% if state_attr('state.attributes', 'battery_level')| float > 20 %}
-  batt level of {{ state.attributes.battery_level }}
+{{state.entity_id}} {{state.attributes.friendly_name}}  batt level {{state.attributes.battery_level}}
+{% if state_attr('state', 'battery_level') | float > 20 %}
+batt OK
 {% else %}
-  state_attr('state.attributes', 'battery_level'
-{% endif %}{% endfor %}
+batt NOT OK
+{%endif %}
+{% endfor %}
