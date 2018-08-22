@@ -1,4 +1,8 @@
-{{ states.sensor.temperature_158d0002477cca}}
+{{ states.sensor.temperature_158d0002477cca.state}}{{ states.sensor.temperature_158d0002477cca.unit_of_measurement}}
+
+temperature is {{ states.sensor.temperature_158d0002477cca}}
+
+
 {% for state in states.sensor %}
   {{ state.entity_id }}={{ state.state }},
 {% endfor %}
