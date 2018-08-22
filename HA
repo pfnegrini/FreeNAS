@@ -1,8 +1,14 @@
-{{ states.sensor.temperature_158d0002477cca.state}}{{ states.sensor.temperature_158d0002477cca.unit_of_measurement}}
+{{ states.sensor.temperature_158d0002477cca.state}}{{ states.sensor.temperature_158d0002477cca.attributes.unit_of_measurement}}
 
-temperature is {{ states.sensor.temperature_158d0002477cca.attributes.battery_level}}
+batt levvel is {{ states.sensor.temperature_158d0002477cca.attributes.battery_level}} %
 
 
 {% for state in states.sensor %}
   {{ state.entity_id }}={{ state.state }},
 {% endfor %}
+
+{% if is_state('state.entity_id ', 'battery_level') %}
+  batt level of {{ state.attributes.battery_level }}
+{% else %}
+  Paulus is at {{ states('device_tracker.paulus') }}.
+{% endif %}
