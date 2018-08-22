@@ -12,9 +12,10 @@ states('sensor.temperature')
 
 {% for state in states.sensor %}
 {{state.entity_id}} {{state.attributes.friendly_name}}  batt level {{state.attributes.battery_level}}
-{% if state_attr('state', 'battery_level') | float > 20 %}
-batt OK
+{% set test = state.attributes.battery_level %}
+{% if 50 | float > 20 %}
+batt OK {{test}}
 {% else %}
-batt NOT OK
+batt NOT OK {{state_attr('entity_id', 'battery_level')}}
 {%endif %}
 {% endfor %}
