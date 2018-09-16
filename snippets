@@ -1,4 +1,19 @@
 
+#!/bin/bash
+mkdir tmp
+
+for filename in *.mkv; do
+        echo "$filename"
+        ffmpeg -i "$filename" -map 0 -vcodec copy -scodec copy -acodec ac3 -b:a 640k "./tmp/$filename"
+        #rm "$filename"
+        mv "./tmp/$filename" .
+done
+
+rm -r tmp
+mv *.mkv /mnt/Movies 
+
+
+
 iocage set allow_raw_sockets=1 FAMP2
 iocage set ip4_addr="bridge0|192.168.1.129" FAMP2
  iocage set template=yes FAMP
