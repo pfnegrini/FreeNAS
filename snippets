@@ -1,4 +1,22 @@
 
+import os
+count = 0
+for (dirname, dirs, files) in os.walk('.'):
+  for filename in files:
+    if filename.endswith('.mkv') :
+      path = dirname + "/tmp"
+      try:
+        os.mkdir( path, 0777 )
+      count = count + 1
+      print filename
+      command = 'ffmpeg -i ' + filename + ' -map 0 -vcodec copy -scodec copy -acodec ac3 -b:a 640k ' + '"./tmp/' + filename +'"'
+      #os.system(command)
+      print command
+
+print 'Files:', count
+
+
+
 #!/bin/bash
 mkdir tmp
 
