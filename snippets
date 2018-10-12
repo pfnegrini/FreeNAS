@@ -18,6 +18,11 @@ print 'Files:', count
 
 $ ffprobe -hide_banner -loglevel fatal -show_error -show_format -show_streams -show_programs -show_chapters -show_private_data -print_format json filenams.mkv
 
+find . -depth -name "*.mkv" -exec sh -c 'ffmpeg -i "$0"  -map 0 -vcodec copy -scodec copy -acodec ac3 -b:a 640k "./tmp/${0##*/}"' {} \;
+mv ./tmp/*.mkv ./ 
+
+
+
 #!/bin/bash
 mkdir tmp
 
