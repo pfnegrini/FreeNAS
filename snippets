@@ -20,6 +20,7 @@ $ ffprobe -hide_banner -loglevel fatal -show_error -show_format -show_streams -s
 
 find . -depth -name "*.mkv" -exec sh -c 'ffmpeg -i "$0"  -map 0 -vcodec copy -scodec copy -acodec ac3 -b:a 640k "./tmp/${0##*/}"' {} \;
 mv ./tmp/*.mkv ./ 
+rm -R -- */
 
 
 
