@@ -5,9 +5,9 @@ rm /tmp/pkg.json
 #mkdir -p /mnt/tank/apps/sickrage
 #mkdir -p /mnt/tank/media/downloads
 #mkdir -p /mnt/tank/media/series
-iocage fstab -a sickrage /mnt/tank/apps/sickrage /config nullfs rw 0 0
-iocage fstab -a sickrage /mnt/tank/media/downloads /mnt/downloads nullfs rw 0 0
-iocage fstab -a sickrage /mnt/tank/media/series /mnt/series nullfs rw 0 0
+#iocage fstab -a sickrage /mnt/tank/apps/sickrage /config nullfs rw 0 0
+#iocage fstab -a sickrage /mnt/tank/media/downloads /mnt/downloads nullfs rw 0 0
+#iocage fstab -a sickrage /mnt/tank/media/series /mnt/series nullfs rw 0 0
 
 iocage exec sickrage "sed -i -e 's/quarterly/release_2/g' /etc/pkg/FreeBSD.conf"
 iocage exec sickrage pkg update
