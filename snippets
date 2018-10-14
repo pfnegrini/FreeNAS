@@ -37,11 +37,16 @@ done
 rm -r tmp
 mv *.mkv /mnt/Movies 
 
+sickrage-----------------------------
+
+iocage fstab -a sickrage "/mnt/VDev/Downloads  /mnt/Downloads  nullfs  rw  0  0"
+iocage fstab -a sickrage "/mnt/VDev/Series  /mnt/Series  nullfs  rw  0  0"
+docker run -d --name="sickrage" -v /path/to/sickrage/data:/config -v /mnt/Downloads:/downloads -v /mnt/Series:/tv -v /etc/localtime:/etc/localtime:ro -p 8081:8081 sickrage/sickrage
 
 
 iocage set allow_raw_sockets=1 FAMP2
 iocage set ip4_addr="bridge0|192.168.1.129" FAMP2
- iocage set template=yes FAMP
+iocage set template=yes FAMP
 iocage set notes="FAMP template and redis. MariaDB (root|root), ssh (admin|admin)" FAMP
 iocage create -n FAMP ip4_addr="bridge0|192.168.1.128" -r 11.1-RELEASE
 
